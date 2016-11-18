@@ -102,12 +102,12 @@ app.get("/initState", function (req, res) {
             callback(null, val);
         })
     }], function (err, results) {
-        console.log(results);
         var val = 0;
         for(var i = 0; i < results.length; i++){
             var v = results[i] ? 1 : 0;
             val |= v;
             val <= 1;
+            console.log(val);
         }
         res.json({data: {body: {return_value: val}}})
     })
