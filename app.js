@@ -106,7 +106,7 @@ app.get("/initState", function (req, res) {
         for(var i = 0; i < results.length; i++){
             var v = results[i] ? 1 : 0;
             val |= v;
-            val <= 1;
+            val <<= 1;
             console.log(val);
         }
         res.json({data: {body: {return_value: val}}})
