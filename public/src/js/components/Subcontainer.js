@@ -32,7 +32,7 @@ export default class Subcontainer extends React.Component {
                     <div className="rows" style={{'background': 'red'}}>
                         {
                             this.props.cards.map((card, i)=> {
-                                if(i >= 8){
+                                if(i >= 3){
                                     return (
                                         <Card key={i} available={card.available} cardId={card.id}></Card>
                                     )
