@@ -96,7 +96,7 @@ export default function reducer (state = {
                     alarm: alarm,
                     authorized: true,
                     user: data.user_name,
-                    valid_timer: 2
+                    valid_timer: 10
                 }
             } else {
                 console.log('Cannot login when alarmed!')
