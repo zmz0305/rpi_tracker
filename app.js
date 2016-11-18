@@ -14,7 +14,6 @@ var app = express();
 var port = process.env.PORT || 3000;
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-server.listen(port);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -140,5 +139,6 @@ app.get("/initState", function (req, res) {
 //     console.log('values at 37: ' + val);
 //   });
 // }, 1000);
+server.listen(port);
 
 module.exports = app;
