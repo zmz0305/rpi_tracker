@@ -109,6 +109,7 @@ app.get("/initState", function (req, res) {
             val <<= 1;
             console.log(val);
         }
+        val >>= 1;
         res.json({data: {body: {return_value: val}}})
     })
 })
