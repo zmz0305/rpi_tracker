@@ -8,8 +8,7 @@ export function fetchHingeStates() {
     return function(dispatch) {
         dispatch({type: "FETCH_STATE"});
         axios.get("http://"+props.SERVER_ADDRESS+"/initState").then((res)=>{
-            console.log(res.data);
-            dispatch({type: "FETCH_STATE_FULFILLED", payload: res.data})
+            dispatch({type: "FETCH_STATE_FULFILLED", payload: res.data.data})
         }).catch((err) => {
             dispatch({type: "FETCH_STATE_REJECTED", payload: err});
         });
