@@ -14,6 +14,7 @@
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "rpi-gpio": "^0.7.0",
+    "serialport": "^4.0.6",
     "serve-favicon": "~2.3.0",
     "socket.io": "^1.5.1"
   }
