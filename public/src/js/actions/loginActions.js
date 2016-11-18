@@ -2,7 +2,7 @@
  * Created by zmz0305 on 11/11/16.
  */
 import io from "socket.io-client";
-
+import props from "../props"
 export function monitorLogin () {
     return function(dispatch) {
         let socket = io.connect(props.SERVER_ADDRESS);
