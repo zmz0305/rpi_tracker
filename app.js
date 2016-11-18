@@ -28,12 +28,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', routes);
 app.use('/users', users);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
 
 // error handlers
 
@@ -117,6 +111,12 @@ app.get("/initState", function (req, res) {
     })
 })
 
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
 // setInterval(function readInput() {
 //   gpio.read(31, function (err, val) {
 //     if(err){
