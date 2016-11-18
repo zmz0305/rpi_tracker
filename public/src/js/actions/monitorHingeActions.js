@@ -12,6 +12,7 @@ export function monitorHinge(){
         })
 
         socket.on('toolReturned', (data) => {
+            console.log(data.data);
             let idx = Number(data.data);
             console.log('tool returned: ' + idx);
             dispatch({type: "TOOL_RETURNED", payload: idx});
