@@ -78,13 +78,10 @@ gpio.setup(37, gpio.DIR_IN, gpio.EDGE_BOTH);
 gpio.on('change', function (channel, value) {
     pinmap = {31: 13, 33: 14, 37: 15};
     if (value) {
-        console.log(pinmap);
-        console.log(channel);
-        console.log(pinmap.channel);
-        io.emit('toolReturned', {data: pinmap.channel});
+        io.emit('toolReturned', {data: pinmap[channel]});
         console.log('Channel ' + channel + ' value is now ' + value);
     } else {
-        io.emit('toolRemoved', {data: pinmap.channel});
+        io.emit('toolRemoved', {data: pinmap[channel]});
         console.log('Channel ' + channel + ' value is now ' + value);
     }
 });
