@@ -6,14 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var async = require('async');
 
-// var routes = require('./routes/index');
+var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var serialport = require('serialport');
 var app = express();
-var port = process.env.PORT || 3000;
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -139,6 +137,8 @@ app.get("/initState", function (req, res) {
 //     console.log('values at 37: ' + val);
 //   });
 // }, 1000);
+var port = process.env.PORT || 3000;
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 server.listen(port);
-
 module.exports = app;
