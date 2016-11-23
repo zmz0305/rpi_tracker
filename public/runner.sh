@@ -1,1 +1,1 @@
-git add . && git commit -m "pack" && git push
+webpack && git add . && git commit -m "pack" && git push
