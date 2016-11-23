@@ -28,13 +28,13 @@ export default class Container extends React.Component {
         this.props.dispatch(fetchHingeStates());
         this.props.dispatch(monitorHinge());
         this.props.dispatch(monitorLogin());
-        setInterval(()=>{
-            console.log(this.props.state.valid_timer);
-            if(this.props.state.valid_timer < 0){
-                this.props.dispatch(logout());
-            }
-            this.props.dispatch(tick());
-        }, 1000);
+        // setInterval(()=>{
+        //     console.log(this.props.state.valid_timer);
+        //     if(this.props.state.valid_timer < 0){
+        //         this.props.dispatch(logout());
+        //     }
+        //     this.props.dispatch(tick());
+        // }, 1000);
     }
 
     render() {
