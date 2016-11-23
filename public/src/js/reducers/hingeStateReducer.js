@@ -31,7 +31,7 @@ export default function reducer (state = {
             let count = 0;
             let hinge_status = new Array(END_SLOT);
             for (let digit = END_SLOT - 1; digit >=0; digit--) {
-                let taken = (res&1 == 1);
+                let taken = (res&1 == 0);
                 if(taken){
                     count += 1;
                 }
@@ -66,7 +66,7 @@ export default function reducer (state = {
                 status: newHinge_status,
                 alarm: alarm,
                 unauthorized:newUnauthorized,
-                checkOutAmount: newCheckOutAmount
+                checkoutAmount: newCheckOutAmount
             };
             return ret;
         }
@@ -88,7 +88,7 @@ export default function reducer (state = {
                 status: newHinge_status,
                 alarm: alarm,
                 unauthorized: newUnauthorized,
-                checkOutAmount: newCheckOutAmount
+                checkoutAmount: newCheckOutAmount
             };
         }
         case "USER_LOGIN": {

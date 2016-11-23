@@ -24,7 +24,7 @@ export default class Left extends React.Component {
         return (
             <div className="col-sm-4 center-block vertical-align" style={{'background': 'green', 'height': '480px'}}>
                 <Dial
-                    value={this.props.checkOutAmount}
+                    value={this.props.checkoutAmount}
                     min={0}
                     max={3}
                 />
