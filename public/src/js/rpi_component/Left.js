@@ -21,7 +21,6 @@ export default class Left extends React.Component {
     }
 
     render() {
-        var dialReading = `${this.state.dialValue}`
         return (
             <div className="col-sm-4 center-block vertical-align" style={{'background': 'green', 'height': '480px'}}>
                 <Dial
