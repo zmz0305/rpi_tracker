@@ -75,7 +75,7 @@ export default function reducer (state = {
             let newHinge_status = [...state.status];
             let alarm = state.alarm;
             let newUnauthorized = new Set(state.unauthorized);
-            let newCheckOutAmount = state.newCheckOutAmount - 1;
+            let newCheckOutAmount = state.newCheckoutAmount - 1;
             newHinge_status[idx].available = true;
             if(!state.authorized) {
                 newUnauthorized.delete(idx);
