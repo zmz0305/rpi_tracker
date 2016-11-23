@@ -1,0 +1,89 @@
+{
+  "_args": [
+    [
+      "react-dial",
+      "/Users/zmz0305/workspace/OneDrive/workplace/Grainger/rpi_tracker/public"
+    ]
+  ],
+  "_from": "react-dial@*",
+  "_id": "react-dial@1.0.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-dial",
+  "_nodeVersion": "5.6.0",
+  "_npmOperationalInternal": {
+    "host": "packages-13-west.internal.npmjs.com",
+    "tmp": "tmp/react-dial-1.0.1.tgz_1458331156308_0.1696261204779148"
+  },
+  "_npmUser": {
+    "email": "whmountains@icloud.com",
+    "name": "whmountains"
+  },
+  "_npmVersion": "3.8.0",
+  "_phantomChildren": {
+    "envify": "3.4.1",
+    "loose-envify": "1.3.0",
+    "promise": "7.1.1",
+    "ua-parser-js": "0.7.12"
+  },
+  "_requested": {
+    "name": "react-dial",
+    "raw": "react-dial",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "*",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-dial/-/react-dial-1.0.1.tgz",
+  "_shasum": "8d0a9713d3b4048204571d42300ff5b6875f1e4e",
+  "_shrinkwrap": null,
+  "_spec": "react-dial",
+  "_where": "/Users/zmz0305/workspace/OneDrive/workplace/Grainger/rpi_tracker/public",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/whmountains/react-dial/issues"
+  },
+  "dependencies": {
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
+  },
+  "description": "jquery-knob for react",
+  "devDependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-2": "^6.5.0",
+    "babelify": "^7.2.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "8d0a9713d3b4048204571d42300ff5b6875f1e4e",
+    "tarball": "https://registry.npmjs.org/react-dial/-/react-dial-1.0.1.tgz"
+  },
+  "gitHead": "10a300e48813cb86bf62ff1d33563cf431a880cd",
+  "homepage": "https://github.com/whmountains/react-dial#readme",
+  "license": "ISC",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "whmountains",
+      "email": "whmountains@icloud.com"
+    }
+  ],
+  "name": "react-dial",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whmountains/react-dial.git"
+  },
+  "scripts": {
+    "build": "babel src --out-dir js",
+    "example": "npm run build && browserify -v -t [ babelify --presets [ react es2015 ] ] example/js/root.jsx -o example/bundle.js",
+    "test": "echo \"type `npm run example` to build the example project and test things out.\""
+  },
+  "version": "1.0.1"
+}

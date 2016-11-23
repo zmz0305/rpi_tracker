@@ -4,7 +4,11 @@ html, body {
     height: 100%;
     /*min-height: 100%;*/
 }
-
+.vertical-align {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+}
 .logoimage {
     text-decoration: none;
     position: relative;

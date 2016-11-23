@@ -10,4 +10,4 @@ const app = document.getElementById('app');
 {/*ReactDOM.render(<Container/>, app);*/}
 ReactDOM.render(<Provider store={store}>
     <Container/>
-    </Provider>, app)
+</Provider>, app)

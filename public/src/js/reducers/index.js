@@ -3,7 +3,9 @@
  */
 import { combineReducers } from "redux"
 import hingeState from "./hingeStateReducer"
+import userState from "./userInfoReducer"
 
 export default combineReducers({
-    hingeState
+    hingeState,
+    userState
 });

@@ -4,12 +4,16 @@
 import React from "react";
 import Subcontainer from './Subcontainer';
 import WelcomeScreen from './WelcomeScreen'
-import Header from './Header';
+import Header from '../rpi_component/Header';
 import Alarm from './Alarm';
+import Left from '../rpi_component/Left'
+import Right from '../rpi_component/Right'
+
 import { connect } from "react-redux"
 import { monitorLogin, logout, tick } from "../actions/loginActions"
 import { fetchHingeStates } from "../actions/hingeStatusActions"
 import { monitorHinge } from "../actions/monitorHingeActions"
+
 @connect((store)=>{
     return {
         state: store.hingeState
@@ -37,11 +41,15 @@ export default class Container extends React.Component {
 
         return (
             <div style={{'height': '100%'}}>
-                <Header/>
-                <Alarm></Alarm>
-                <WelcomeScreen></WelcomeScreen>
-                <Subcontainer></Subcontainer>
+                <div className="container-fluid">
+                    <div className="rows vertical-align">
+                        <Left/>
+                        <Right />
+                    </div>
+
+                </div>
             </div>
+
         );
     }
 }
