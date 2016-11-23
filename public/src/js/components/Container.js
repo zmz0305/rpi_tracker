@@ -40,7 +40,7 @@ export default class Container extends React.Component {
     render() {
 
         return (
-            <div style={{'height': '100%'}}>
+            <div className="container-fluid" style={{'height': '100%'}}>
                 <div className="container-fluid">
                     <div className="rows vertical-align">
                         <Left/>
