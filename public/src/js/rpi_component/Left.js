@@ -4,7 +4,7 @@
 import React from "react";
 import Particle from "../../../bower_components/particle-api-js/dist/particle.min"
 import Dial from '../react-dial'
-import connect from 'react-redux'
+import {connect} from 'react-redux'
 
 @connect((store) => {
     return {
