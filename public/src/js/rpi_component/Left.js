@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
 
 @connect((store) => {
     return {
-        checkOutAmount: store.hingeState.checkOutAmount
+        checkOutAmount: store.hingeState.checkoutAmount
     }
 })
 export default class Left extends React.Component {
