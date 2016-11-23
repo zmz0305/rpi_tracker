@@ -40,8 +40,8 @@ export default class Container extends React.Component {
     render() {
 
         return (
-            <div className="container-fluid" style={{'height': '100%'}}>
-                <div className="container-fluid">
+            <div style={{'height': '100%', 'padding': '0px'}}>
+                <div className="container-fluid" style={{'padding': '0px'}}>
                     <div className="rows vertical-align">
                         <Left/>
                         <Right />
