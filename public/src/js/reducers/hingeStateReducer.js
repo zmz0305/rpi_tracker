@@ -54,6 +54,7 @@ export default function reducer (state = {
             let idx = action.payload;
             let newHinge_status = [...state.status];
             let alarm = state.alarm;
+            let newCheckOutAmount = state.checkoutAmount + 1;
             let newUnauthorized = new Set(state.unauthorized);
             newHinge_status[idx].available = false;
             if(!state.authorized) {
@@ -64,7 +65,8 @@ export default function reducer (state = {
                 ...state,
                 status: newHinge_status,
                 alarm: alarm,
-                unauthorized:newUnauthorized
+                unauthorized:newUnauthorized,
+                checkOutAmount: newCheckOutAmount
             };
             return ret;
         }
@@ -73,6 +75,7 @@ export default function reducer (state = {
             let newHinge_status = [...state.status];
             let alarm = state.alarm;
             let newUnauthorized = new Set(state.unauthorized);
+            let newCheckOutAmount = newCheckOutAmount - 1;
             newHinge_status[idx].available = true;
             if(!state.authorized) {
                 newUnauthorized.delete(idx);
@@ -84,7 +87,8 @@ export default function reducer (state = {
                 ...state,
                 status: newHinge_status,
                 alarm: alarm,
-                unauthorized: newUnauthorized
+                unauthorized: newUnauthorized,
+                checkOutAmount: newCheckOutAmount
             };
         }
         case "USER_LOGIN": {
