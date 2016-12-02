@@ -73,7 +73,7 @@ port.on('open', function () {
 });
 
 port.on('data', function (data) {
-    io.emit('valid_user_detected', {'user_id': 1, 'user_name': "someone"});
+    io.emit('valid_user_detected', {'user_id': 1, 'user_name': "Jerry Shim"});
     console.log(data);
 });
 

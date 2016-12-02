@@ -12,6 +12,8 @@ export function monitorLogin () {
         })
 
         socket.on('valid_user_detected', (data) => {
+            console.log("uesr login: ");
+            console.log(data);
             dispatch({type: "USER_LOGIN", payload: data});
         })
     }

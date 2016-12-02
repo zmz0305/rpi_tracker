@@ -95,12 +95,13 @@ export default function reducer (state = {
                 if(newUnauthorized.size == 0){
                     alarm = false;
                 }
+            } else {
+                let newUser = {...state.users[state.user]};
+                let arr = state.users[state.user].taken;
+                let index = arr.indexOf(idx);
+                newUser.taken = arr.splice(index, 1);
+                newUsers[state.user] = newUser;
             }
-            let newUser = {...state.users[state.user]};
-            let arr = state.users[state.user].taken;
-            let index = arr.indexOf(idx);
-            newUser.taken = arr.splice(index, 1);
-            newUsers[state.user] = newUser;
             return {
                 ...state,
                 users: newUsers,
@@ -114,7 +115,7 @@ export default function reducer (state = {
             let data = action.payload;
             let alarm = state.alarm;
             if(!alarm){
-                if(data.users[data.user_name]){
+                if(state.users[data.user_name]){
                     return {
                         ...state,
                         alarm: alarm,
