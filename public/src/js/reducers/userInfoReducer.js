@@ -4,13 +4,17 @@
 export default function reducer(state = {
     total_tools_taken: 0,
     users:[{
-        name: "David Koenig"
+        name: "David Koenig",
+        taken: []
     }, {
-        name: "Jerry Shim"
+        name: "Jerry Shim",
+        taken: []
     }, {
-        name: "John Leech"
+        name: "John Leech",
+        taken: []
     }, {
-        name: "Reena Patel"
+        name: "Reena Patel",
+        taken: []
     }],
     err: null
 }, action){

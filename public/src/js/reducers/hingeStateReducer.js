@@ -3,16 +3,22 @@
  */
 
 export default function reducer (state = {
-    status: [],
-    unauthorized: new Set(),
+    status: [], // example: [{id: 1, available: true}]
+    users: {"David Koenig" : {name: "David Koenig", taken: []},
+        "Jerry Shim": {name: "Jerry Shim", taken: []},
+        "John Leech": {name: "John Leech", taken: []},
+        "Reena Patel": {name: "Reena Patel", taken: []},
+        "Jim Ryan": {name: 'Jim Ryan', taken: []}
+    },
+    unauthorized: new Set(), // set of unauthorized take out
     fetching: false,
     fetched: false,
     err: null,
-    authorized: false,
-    valid_timer: 0,
-    alarm: false,
-    user: null,
-    checkoutAmount: 0
+    authorized: false, // current authorized state
+    valid_timer: 0, // current logged in countdown timer
+    alarm: false, // if alarm is triggered
+    user: null, // currently logged in user
+    checkoutAmount: 0 // current checked out amount
 }, action) {
 
     switch (action.type){
@@ -56,13 +62,19 @@ export default function reducer (state = {
             let alarm = state.alarm;
             let newCheckOutAmount = state.checkoutAmount + 1;
             let newUnauthorized = new Set(state.unauthorized);
+            let newUsers = {...state.users};
             newHinge_status[idx].available = false;
             if(!state.authorized) {
                 alarm = true;
                 newUnauthorized.add(idx);
+            } else {
+                let newUser = {...state.users[state.user]};
+                newUser.taken = state.users[state.user].taken.concat(idx);
+                newUsers[state.user] = newUser;
             }
             let ret = {
                 ...state,
+                users: newUsers,
                 status: newHinge_status,
                 alarm: alarm,
                 unauthorized:newUnauthorized,
@@ -76,6 +88,7 @@ export default function reducer (state = {
             let alarm = state.alarm;
             let newUnauthorized = new Set(state.unauthorized);
             let newCheckOutAmount = state.checkoutAmount - 1;
+            let newUsers = {...state.users};
             newHinge_status[idx].available = true;
             if(!state.authorized) {
                 newUnauthorized.delete(idx);
@@ -83,8 +96,14 @@ export default function reducer (state = {
                     alarm = false;
                 }
             }
+            let newUser = {...state.users[state.user]};
+            let arr = state.users[state.user].taken;
+            let index = arr.indexOf(idx);
+            newUser.taken = arr.splice(index, 1);
+            newUsers[state.user] = newUser;
             return {
                 ...state,
+                users: newUsers,
                 status: newHinge_status,
                 alarm: alarm,
                 unauthorized: newUnauthorized,
@@ -94,16 +113,21 @@ export default function reducer (state = {
         case "USER_LOGIN": {
             let data = action.payload;
             let alarm = state.alarm;
-            if(! alarm){
-                return {
-                    ...state,
-                    alarm: alarm,
-                    authorized: true,
-                    user: data.user_name,
-                    valid_timer: 10
+            if(!alarm){
+                if(data.users[data.user_name]){
+                    return {
+                        ...state,
+                        alarm: alarm,
+                        authorized: true,
+                        user: data.user_name,
+                        valid_timer: 10
+                    }
                 }
+                console.log('invalid user scanned!');
+                return state;
+
             } else {
-                console.log('Cannot login when alarmed!')
+                console.log('Cannot login when alarmed!');
             }
         }
 
