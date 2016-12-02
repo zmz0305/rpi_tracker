@@ -97,9 +97,9 @@ export default function reducer (state = {
                 }
             } else {
                 let newUser = {...state.users[state.user]};
-                let arr = state.users[state.user].taken;
+                let arr = newUser.taken;
                 let index = arr.indexOf(idx);
-                newUser.taken = arr.splice(index, 1);
+                arr.splice(index, 1);
                 newUsers[state.user] = newUser;
             }
             return {

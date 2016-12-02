@@ -6,8 +6,8 @@ import Subcontainer from './Subcontainer';
 import WelcomeScreen from './WelcomeScreen'
 import Header from '../rpi_component/Header';
 import Alarm from './Alarm';
-import Left from '../rpi_component/Left'
-import Right from '../rpi_component/Right'
+import IdleLeft from '../rpi_component/IdleLeft'
+import IdleRight from '../rpi_component/IdleRight'
 
 import { connect } from "react-redux"
 import { monitorLogin, logout, tick } from "../actions/loginActions"
@@ -43,8 +43,10 @@ export default class Container extends React.Component {
             <div style={{'height': '100%', 'padding': '0px'}}>
                 <div className="container-fluid" style={{'padding': '0px'}}>
                     <div className="rows vertical-align">
-                        <Left/>
-                        <Right />
+                        <Router history={browerHistory}>
+                            <IdleLeft/>
+                            <IdleRight />
+                        </Router>
                     </div>
 
                 </div>

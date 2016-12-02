@@ -1,7 +1,6 @@
 /**
  * Created by zmz0305 on 11/7/16.
  */
-import Particle from "../../../bower_components/particle-api-js/dist/particle.min"
 import axios from "axios"
 import props from "../props"
 export function fetchHingeStates() {
