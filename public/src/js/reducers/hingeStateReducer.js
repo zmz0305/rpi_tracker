@@ -1,6 +1,8 @@
 /**
  * Created by zmz0305 on 11/7/16.
  */
+import props from "../props"
+import _ from 'lodash'
 
 export default function reducer (state = {
     status: [], // example: [{id: 1, available: true}]
@@ -10,7 +12,7 @@ export default function reducer (state = {
         "Reena Patel": {name: "Reena Patel", taken: []},
         "Jim Ryan": {name: 'Jim Ryan', taken: []}
     },
-    unauthorized: new Set(), // set of unauthorized take out
+    unauthorized: new Set(), // set of unauthorized takeout
     fetching: false,
     fetched: false,
     err: null,
@@ -18,7 +20,9 @@ export default function reducer (state = {
     valid_timer: 0, // current logged in countdown timer
     alarm: false, // if alarm is triggered
     user: null, // currently logged in user
-    checkoutAmount: 0 // current checked out amount
+    checkoutAmount: 0, // current checked out amount
+    hingeMonitored: false, // if hinge monitor is initialized or not
+    loginMonitored: false // if login monitor is initialized or not
 }, action) {
 
     switch (action.type){
@@ -37,20 +41,20 @@ export default function reducer (state = {
             let count = 0;
             let hinge_status = new Array(END_SLOT);
             for (let digit = END_SLOT - 1; digit >=0; digit--) {
-                let taken = (res&1 == 0);
-                if(taken){
+                let avail = (res&1 === 1);
+                if(avail){
                     count += 1;
                 }
                 hinge_status[digit] = {};
                 hinge_status[digit].id = digit;
-                hinge_status[digit].available = taken;
+                hinge_status[digit].available = avail;
                 res >>= 1;
             }
             let ret = {
                 ...state,
                 fetching: false,
                 fetched: true,
-                checkoutAmount: count,
+                checkoutAmount: props.SLOT_AMOUNT - count,
                 status: hinge_status,
                 err: null
             };
@@ -90,17 +94,28 @@ export default function reducer (state = {
             let newCheckOutAmount = state.checkoutAmount - 1;
             let newUsers = {...state.users};
             newHinge_status[idx].available = true;
-            if(!state.authorized) {
+            if(state.alarm) {
                 newUnauthorized.delete(idx);
                 if(newUnauthorized.size == 0){
                     alarm = false;
                 }
             } else {
-                let newUser = {...state.users[state.user]};
-                let arr = newUser.taken;
-                let index = arr.indexOf(idx);
-                arr.splice(index, 1);
-                newUsers[state.user] = newUser;
+                _.forEach(newUsers, (value, key)=>{
+                    let i = value.taken.indexOf(idx);
+                    if(i != -1){
+                        let arr = value.taken;
+                        arr.splice(i, 1);
+                        value.taken = arr;
+                    }
+                })
+
+
+                // let newUser = {...state.users[state.user]};
+                // let arr = newUser.taken;
+                // let index = arr.indexOf(idx);
+                // arr.splice(index, 1);
+                // newUser.taken = arr;
+                // newUsers[state.user] = newUser;
             }
             return {
                 ...state,
@@ -145,6 +160,20 @@ export default function reducer (state = {
                 ...state,
                 authorized: false,
                 user: null
+            }
+        }
+
+        case "MONITOR_HINGE": {
+            return {
+                ...state,
+                hingeMonitored: true
+            }
+        }
+
+        case "MONITOR_LOGIN": {
+            return {
+                ...state,
+                loginMonitored: true
             }
         }
     }

@@ -15,13 +15,15 @@ import _ from 'lodash'
 export default class Right extends React.Component {
     render() {
         let cards = [];
+        let gray = false;
         _.forEach(this.props.users, (value, key) => {
+            gray = !gray;
             cards.push(
-                <Card key={key} name={key} checkoutAmount={value.taken.length}></Card>
+                <Card key={key} name={key} checkoutAmount={value.taken.length} gray={gray}></Card>
             )
         })
         return (
-            <div className="col-sm-8" style={{'background':'yellow', 'height':'480px', 'padding':'0px', 'overflow': 'auto'}}>
+            <div className="col-sm-8" style={{'height':'480px', 'padding':'0px', 'overflow': 'auto'}}>
                 {cards}
             </div>
         );

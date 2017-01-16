@@ -3,12 +3,13 @@
  */
 import React from "react";
 import {connect} from "react-redux";
-//
-// @connect((store) => {
-//     return {
-//         alarm: store.hingeState.alarm
-//     }
-// })
+import { replace } from "react-router-redux"
+
+@connect((store) => {
+    return {
+        alarm: store.hingeState.alarm
+    }
+})
 export default class Alarm extends React.Component {
     constructor() {
         super();
@@ -22,6 +23,11 @@ export default class Alarm extends React.Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(!nextProps.alarm){
+            this.props.dispatch(replace('/'))
+        }
+    }
 
     render() {
         return (

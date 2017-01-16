@@ -1,6 +1,3 @@
-/**
- * Created by zmz on 21/09/16.
- */
 import React from "react";
 import IdleLeft from '../rpi_component/IdleLeft'
 import IdleRight from '../rpi_component/IdleRight'
@@ -9,6 +6,7 @@ import {connect} from "react-redux"
 import {monitorLogin, logout, tick} from "../actions/loginActions"
 import {fetchHingeStates} from "../actions/hingeStatusActions"
 import {monitorHinge} from "../actions/monitorHingeActions"
+import { push, replace } from 'react-router-redux'
 
 @connect((store) => {
     return {
@@ -20,17 +18,21 @@ export default class Container extends React.Component {
         super(props);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.state.alarm){
+            this.props.dispatch(replace('alarm'))
+        }
+        if(nextProps.state.authorized){
+            this.props.dispatch(replace('loggedin'))
+        }
+    }
+
     componentDidMount() {
         this.props.dispatch(fetchHingeStates());
-        this.props.dispatch(monitorHinge());
-        this.props.dispatch(monitorLogin());
-        // setInterval(()=>{
-        //     console.log(this.props.state.valid_timer);
-        //     if(this.props.state.valid_timer < 0){
-        //         this.props.dispatch(logout());
-        //     }
-        //     this.props.dispatch(tick());
-        // }, 1000);
+        if(! this.props.state.hingeMonitored)
+            this.props.dispatch(monitorHinge());
+        if(! this.props.state.loginMonitored)
+            this.props.dispatch(monitorLogin());
     }
 
     render() {

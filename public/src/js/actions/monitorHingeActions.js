@@ -5,6 +5,7 @@ import io from "socket.io-client"
 import props from "../props"
 export function monitorHinge(){
     return function(dispatch) {
+        dispatch({type: "MONITOR_HINGE", payload: null})
         let socket = io.connect(props.SERVER_ADDRESS);
         socket.on('connect', () => {
             let id = socket.io.engine.id;
