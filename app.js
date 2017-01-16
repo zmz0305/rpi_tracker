@@ -82,14 +82,22 @@ gpio.setup(31, gpio.DIR_IN, gpio.EDGE_BOTH);
 gpio.setup(33, gpio.DIR_IN, gpio.EDGE_BOTH);
 gpio.setup(37, gpio.DIR_IN, gpio.EDGE_BOTH);
 
+var pinmap = {
+    31: {id: 13, prev_state: true},
+    33: {id: 14, prev_state: true},
+    37: {id: 15, prev_state: true}
+};
 gpio.on('change', function (channel, value) {
-    pinmap = {31: 13, 33: 14, 37: 15};
-    if (value) {
-        io.emit('toolReturned', {data: pinmap[channel]});
-        console.log('Channel ' + channel + ' value is now ' + value);
-    } else {
-        io.emit('toolRemoved', {data: pinmap[channel]});
-        console.log('Channel ' + channel + ' value is now ' + value);
+    if (pinmap[channel].prev_state != value) {
+        if (value) {
+            io.emit('toolReturned', {data: pinmap[channel].id});
+            pinmap[channel].prev_state = value;
+            console.log('Channel ' + channel + ' value is now ' + value);
+        } else {
+            io.emit('toolRemoved', {data: pinmap[channel].id});
+            pinmap[channel].prev_state = value;
+            console.log('Channel ' + channel + ' value is now ' + value);
+        }
     }
 });
 
@@ -97,16 +105,19 @@ app.get("/initState", function (req, res) {
     async.parallel([function (callback) {
         gpio.read(31, function (err, val) {
             if (err) {throw err;}
+            pinmap[31].prev_state = val;
             callback(null, val);
         })
     }, function (callback) {
         gpio.read(33, function (err, val) {
             if(err) {throw err;}
+            pinmap[33].prev_state = val;
             callback(null, val);
         })
     }, function (callback) {
         gpio.read(37, function (err, val) {
             if(err) {throw err;}
+            pinmap[37].prev_state = val;
             callback(null, val);
         })
     }], function (err, results) {
