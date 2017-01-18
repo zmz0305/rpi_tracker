@@ -84,7 +84,7 @@ port.on('data', function (data) {
     console.log(typeof id);
     console.log(users.id);
     for(var x in users){
-        console.log(x);
+        console.log(x === id);
     }
     if(users[id]){
         io.emit('valid_user_detected', users[id].name);
