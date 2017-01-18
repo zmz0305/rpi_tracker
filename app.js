@@ -72,12 +72,12 @@ port.on('open', function () {
     console.log('Port open');
 });
 
-var users = {
-    '80000AAC80A6': {name: 'David Koenig'},
-    '82003CD298F4': {name: 'Jerry Shim'},
-}
 
 port.on('data', function (data) {
+    users = {
+        '80000AAC80A6': {name: 'David Koenig'},
+        '82003CD298F4': {name: 'Jerry Shim'},
+    }
     id = data.substr(data.length - 13);
     console.log(users)
     console.log(id)
