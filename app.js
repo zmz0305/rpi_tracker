@@ -79,7 +79,7 @@ var users = {
 }
 
 port.on('data', function (data) {
-    id = data.substr(data.length - 12);
+    id = data.substr(data.length - 13);
     if(users[id]){
         io.emit('valid_user_detected', users[id].name);
     }
