@@ -79,14 +79,6 @@ port.on('data', function (data) {
         '82003CD298F4': {name: 'Jerry Shim'}
     };
     id = data.substr(data.length - 13).trim();
-    // for(var x in users){
-    //     console.log(x);
-    //     console.log(x.length);
-    //     console.log(id);
-    //     console.log(id.length);
-    //     console.log(x == id);
-    //     console.log(x === id);
-    // }
     console.log(users[id]);
     if(users[id]){
         console.log('valid user');
