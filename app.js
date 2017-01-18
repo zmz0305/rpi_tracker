@@ -78,7 +78,7 @@ port.on('data', function (data) {
         '80000AAC80A6': {name: 'David Koenig'},
         '82003CD298F4': {name: 'Jerry Shim'}
     };
-    id = data.substr(data.length - 13);
+    id = data.substr(data.length - 13).trim();
     for(var x in users){
         console.log(x);
         console.log(x.length);
