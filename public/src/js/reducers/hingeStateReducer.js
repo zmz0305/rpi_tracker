@@ -137,12 +137,12 @@ export default function reducer (state = {
             let data = action.payload;
             let alarm = state.alarm;
             if(!alarm){
-                if(state.users[data.user_name]){
+                if(state.users[data]){
                     return {
                         ...state,
                         alarm: alarm,
                         authorized: true,
-                        user: data.user_name,
+                        user: data,
                         valid_timer: 10
                     }
                 }
