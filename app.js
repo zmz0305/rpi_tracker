@@ -79,11 +79,10 @@ port.on('data', function (data) {
         '82003CD298F4': {name: 'Jerry Shim'}
     };
     id = data.substr(data.length - 13);
-    console.log(users);
-    console.log(id);
-    console.log(typeof id);
-    console.log(users.id);
     for(var x in users){
+        console.log(typeof x);
+        console.log(typeof id);
+        console.log(x == id);
         console.log(x === id);
     }
     if(users[id]){
