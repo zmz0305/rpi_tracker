@@ -80,7 +80,9 @@ port.on('data', function (data) {
     };
     id = data.substr(data.length - 13);
     for(var x in users){
+        console.log(x);
         console.log(typeof x);
+        console.log(id);
         console.log(typeof id);
         console.log(x == id);
         console.log(x === id);
