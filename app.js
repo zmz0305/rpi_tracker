@@ -72,9 +72,18 @@ port.on('open', function () {
     console.log('Port open');
 });
 
+var users = {
+    '80000AAC80A6': {name: 'David Koenig'},
+    '82003CD298F4': {name: 'Jerry Shim'},
+
+}
+
 port.on('data', function (data) {
-    io.emit('valid_user_detected', {'user_id': 1, 'user_name': "Jerry Shim"});
-    console.log(data);
+    id = data.substr(data.length - 12);
+    if(users[id]){
+        io.emit('valid_user_detected', users[id].name);
+    }
+    console.log(id);
 });
 
 var gpio = require('rpi-gpio');
