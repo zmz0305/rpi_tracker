@@ -77,12 +77,15 @@ port.on('data', function (data) {
     users = {
         '80000AAC80A6': {name: 'David Koenig'},
         '82003CD298F4': {name: 'Jerry Shim'}
-    }
+    };
     id = data.substr(data.length - 13);
-    console.log(users)
-    console.log(id)
+    console.log(users);
+    console.log(id);
     console.log(typeof id);
     console.log(users.id);
+    for(var x in users){
+        console.log(x);
+    }
     if(users[id]){
         io.emit('valid_user_detected', users[id].name);
     }
