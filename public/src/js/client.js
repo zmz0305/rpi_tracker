@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import IdleContainer from "./rpi_component/IdleContainer.js";
 import Alarm from "./rpi_component/Alarm"
 import LoggedInContainer from "./rpi_component/LoggedInContainer"
+import UserDetailContainer from "./rpi_component/UserDetailContainer"
 import App from "./rpi_component/App"
 import store from "./store"
 import { Provider } from "react-redux"
@@ -20,6 +21,7 @@ ReactDOM.render((
                 <IndexRoute component={IdleContainer} />
                 <Route path="loggedin" component={LoggedInContainer} />
                 <Route path="alarm" component={Alarm} />
+                <Route path="user/:name" component={UserDetailContainer} />
             </Route>
         </Router>
     </Provider>

@@ -3,6 +3,7 @@
  */
 
 import React from "react";
+import { Link } from 'react-router'
 import Card from './Card'
 import {connect} from 'react-redux'
 import _ from 'lodash'
@@ -19,7 +20,9 @@ export default class Right extends React.Component {
         _.forEach(this.props.users, (value, key) => {
             gray = !gray;
             cards.push(
-                <Card key={key} name={key} checkoutAmount={value.taken.length} gray={gray}></Card>
+                <Link to={"user/" + key} key={key}>
+                    <Card name={key} checkoutAmount={value.taken.length} gray={gray}></Card>
+                </Link>
             )
         })
         return (

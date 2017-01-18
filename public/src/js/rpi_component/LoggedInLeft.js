@@ -29,7 +29,7 @@ export default class LoggedInLeft extends React.Component {
 
     render() {
         return (
-            <div className="col-sm-4 center-block vertical-align" style={{'border': 'solid 1px', 'background': 'lightGray', 'height': '480px'}}>
+            <div className="col-sm-4 center-block vertical-align" style={{'border': 'solid 1px', 'background': '#f5f5f5', 'height': '480px'}}>
                 <Dial
                     value={this.props.valid_timer}
                     min={0}

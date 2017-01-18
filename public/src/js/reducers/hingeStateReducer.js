@@ -21,6 +21,7 @@ export default function reducer (state = {
     alarm: false, // if alarm is triggered
     user: null, // currently logged in user
     checkoutAmount: 0, // current checked out amount
+    checkoutTime: {}, // the time each tool is checked out
     hingeMonitored: false, // if hinge monitor is initialized or not
     loginMonitored: false // if login monitor is initialized or not
 }, action) {
@@ -67,6 +68,8 @@ export default function reducer (state = {
             let newCheckOutAmount = state.checkoutAmount + 1;
             let newUnauthorized = new Set(state.unauthorized);
             let newUsers = {...state.users};
+            let newCheckoutTime = {...state.checkoutTime};
+            newCheckoutTime[idx] = new Date();
             newHinge_status[idx].available = false;
             if(!state.authorized) {
                 alarm = true;
@@ -82,7 +85,8 @@ export default function reducer (state = {
                 status: newHinge_status,
                 alarm: alarm,
                 unauthorized:newUnauthorized,
-                checkoutAmount: newCheckOutAmount
+                checkoutAmount: newCheckOutAmount,
+                checkoutTime: newCheckoutTime
             };
             return ret;
         }
@@ -92,7 +96,9 @@ export default function reducer (state = {
             let alarm = state.alarm;
             let newUnauthorized = new Set(state.unauthorized);
             let newCheckOutAmount = state.checkoutAmount - 1;
+            let newCheckoutTime = {...state.checkoutTime}
             let newUsers = {...state.users};
+            delete newCheckoutTime[idx];
             newHinge_status[idx].available = true;
             if(state.alarm) {
                 newUnauthorized.delete(idx);
@@ -123,7 +129,8 @@ export default function reducer (state = {
                 status: newHinge_status,
                 alarm: alarm,
                 unauthorized: newUnauthorized,
-                checkoutAmount: newCheckOutAmount
+                checkoutAmount: newCheckOutAmount,
+                checkoutTime: newCheckoutTime
             };
         }
         case "USER_LOGIN": {

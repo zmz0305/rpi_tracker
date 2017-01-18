@@ -14,13 +14,14 @@ export default class Card extends React.Component {
 
     render(){
         this.style = this.props.gray ? this.styleGray : this.styleDefault;
+        this.checkout = this.props.checkoutAmount === undefined ? '' : 'checkout';
         return (
             <div style={this.style}>
                 <div>
                     <p style={this.leftStyle}>{this.props.name}</p>
                 </div>
                 <div style={{'float':'right', 'textAlign': 'center', 'paddingRight': '20px'}}>
-                    <p style={this.uprightStyle}>checkout</p>
+                    <p style={this.uprightStyle}>{this.checkout}</p>
                     <p style={this.uprightStyle}>{this.props.checkoutAmount}</p>
                 </div>
             </div>

@@ -18,7 +18,7 @@ export default class Alarm extends React.Component {
             opacity: 0.8,
             width: '100%',
             height: '100%',
-            paddingTop: '20%',
+            paddingTop: '10%',
             textAlign: 'center'
         }
     }
@@ -31,10 +31,16 @@ export default class Alarm extends React.Component {
 
     render() {
         return (
-            <div style={this.style}>
-                <img src="images/warning.jpg"/>
-                <h1>UNAUTHORIZED ACCESS</h1>
+            <div style={{'height': '100%', 'padding': '0px'}}>
+                <div className="container-fluid" style={{'padding': '0px'}}>
+
+                    <div style={this.style}>
+                        <img src="images/warning.jpg"/>
+                        <h1>UNAUTHORIZED ACCESS</h1>
+                    </div>
+                </div>
             </div>
+
         );
 
     }
