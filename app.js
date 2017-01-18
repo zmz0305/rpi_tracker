@@ -82,7 +82,7 @@ port.on('data', function (data) {
     console.log(users)
     console.log(id)
     console.log(typeof id);
-    console.log(users[id.toString()]);
+    console.log(users.id);
     if(users[id]){
         io.emit('valid_user_detected', users[id].name);
     }
