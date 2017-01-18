@@ -80,6 +80,7 @@ var users = {
 
 port.on('data', function (data) {
     id = data.substr(data.length - 13);
+    console.log(users[id]);
     if(users[id]){
         io.emit('valid_user_detected', users[id].name);
     }
