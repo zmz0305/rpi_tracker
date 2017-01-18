@@ -80,11 +80,12 @@ var users = {
 
 port.on('data', function (data) {
     id = data.substr(data.length - 13);
+    console.log(users)
+    console.log(id);
     console.log(users[id]);
     if(users[id]){
         io.emit('valid_user_detected', users[id].name);
     }
-    console.log(id);
 });
 
 var gpio = require('rpi-gpio');
